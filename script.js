@@ -20,7 +20,7 @@ let card1 = new Card('https://media.wizards.com/2021/mid/it_j6JJKW29cU.png',
                         3,
                         [TYPE[0]],
                         [COLOR[1]],
-                        'la forza di adeline, catara splendente è pari al numero di creature che controlli',
+                        'la forza di adeline catara splendente è pari al numero di creature che controlli',
                         ['n', 4]
                         );
 let card2 = new Card('https://media.wizards.com/2021/mid/it_xNb9MZTHAf.png',
@@ -100,7 +100,7 @@ let card11 = new Card('https://media.wizards.com/2021/mid/it_TB3w4LNXaw.png',
                         2,
                         [TYPE[3]],
                         [COLOR[3]],
-                        'quando entra nel campo, assegnala a una creatura bersaglio',
+                        'quando entra nel campo assegnala a una creatura bersaglio',
                         false
                         );    
 let card12 = new Card('https://media.wizards.com/2021/mid/it_hcmWP6TgZT.png',
@@ -108,7 +108,7 @@ let card12 = new Card('https://media.wizards.com/2021/mid/it_hcmWP6TgZT.png',
                         3,
                         [TYPE[3]],
                         [COLOR[4]],
-                        'ogniqualvolta lanci una magia, metti un segnalino carica',
+                        'ogniqualvolta lanci una magia metti un segnalino carica',
                         false
                         );
 let card13 = new Card('https://media.wizards.com/2021/mid/it_17jUdpj3Mt.png',
@@ -150,9 +150,17 @@ let card17 = new Card('https://media.wizards.com/2021/mid/it_VEXKdDOGOz.png',
                         [COLOR[0]],
                         'incanta creatura',
                         false
+                        );
+let card18 = new Card('https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=203113&type=card',
+                        'trappola vorace',
+                        4,
+                        [TYPE[1]],
+                        [COLOR[0]],
+                        'esilia tutte le carte dal cimitero di un giocatore',
+                        false
                         ); 
 
-let datiJson = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17];
+let datiJson = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18];
 
 console.log(datiJson);
 
@@ -225,7 +233,7 @@ function cleanCard(){
     });
 }
 
-// EVENTI DI RICERCA
+// EVENTI DI RICERCA SELECT
 let searchCards = document.getElementById("cerca-carte");
 let select = document.getElementsByClassName("selected");
 let arraySelect = Array.from(select);
@@ -307,6 +315,103 @@ searchCards.addEventListener("click", () => {
         createCards(newArrayData);
     }
 });
+
+// EVENTO DI RICERCA INPUT NAME
+let inputName = document.getElementById("input-name");
+
+// creo funzione per controllo nome
+function controlName(parola1, parola2){
+    let count = 0;
+    for(let i = 0; i < parola1.length; i++){
+        if(parola1[i] === parola2[count]){
+            count += 1;
+        }
+    }
+    if(count === parola1.length){
+        return true;
+    }
+}
+
+// creo funzione per trasformare valore input in lowercase
+function trasformaInput(input){
+    let array = [];
+    for(let i = 0; i < input.length; i++){
+        array.push(input[i].toLowerCase());
+    }
+    let parola = array.join('');
+    return parola;
+}
+
+inputName.addEventListener("keypress", (e) => {
+    if(e.key === 'Enter'){
+        
+        // pulisco carte
+        cleanCard();
+
+        let newArray = [];
+
+        // salvo il nome inserito nell' input e pulisco input
+        let nomeInserito = inputName.value;
+        inputName.value = '';
+
+        // ciclo array dati per verificare se il nome inserito corrisponde a uno dei nomi delle carte, se si pusho elemento in 
+        // nuovo array
+        datiJson.forEach(element => {
+            if(controlName(trasformaInput(nomeInserito), element.name)){
+                newArray.push(element);
+            }
+        });
+
+        // genero le carte che corrispondono ai criteri di ricerca
+        createCards(newArray);
+    }
+})
+
+// EVENTO DI RICERCA PAROLA CHIAVE
+let inputKeyWord = document.getElementById("input-key-word");
+
+// creo funzione per trasformare testo in array
+function textToArray(testo){
+    let array = testo.split(' ');
+    return array;
+}
+
+inputKeyWord.addEventListener("keypress", (e) => {
+    if(e.key === 'Enter'){
+
+        // pulisco carte
+        cleanCard();
+
+        let newArray = [];
+
+        // salvo il nome inserito nell' input e pulisco input
+        let parolaChiaveIserita = inputKeyWord.value;
+        inputKeyWord.value = '';
+
+        //controllo che venga inserita una sola parola
+        for(let i = 0; i < parolaChiaveIserita.length; i++){
+            if(parolaChiaveIserita[i] === ' '){
+                alert('Inserisci una sola parola');
+                break;
+            }
+        }
+
+        // ciclo array per avere un riscontro sulla parola inserita
+        datiJson.forEach(element => {
+            if(element.text){
+                let arrayTesto = textToArray(element.text);
+                arrayTesto.forEach(el => {
+                    if(trasformaInput(parolaChiaveIserita) === el){
+                        newArray.push(element);
+                    }
+                });
+            }
+        });
+        
+        // genero le carte che corrispondono ai criteri di ricerca
+        createCards(newArray);
+    }
+})
         
 
 
