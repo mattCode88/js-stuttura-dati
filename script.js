@@ -232,7 +232,7 @@ let arraySelect = Array.from(select);
 
 searchCards.addEventListener("click", () => {
 
-    // pulisco container carte
+    // pulisco container carte ad ogni click
     cleanCard();
     
 
@@ -250,226 +250,63 @@ searchCards.addEventListener("click", () => {
         createCards(datiJson);
     }else{
         arraySelect.forEach(element => {
-
             if(element.options.selectedIndex !== 0){
-        
                 let opzione = element.name;
                 let valore = element.value;
-
                 obj[opzione] = valore;
-                // console.log(obj);
             }
-        
-    
         });
 
-console.log(obj);
-        // uuuu
-        /*controllo se nell' oggetto sono presenti le proprietà forza o costituzione, se si genreo una nuova variabile con valore vitalita.
-    Salvo il numero di proprietà presenti nell' oggetto. */
-    
-    let numeroProp = 0;
+        /*controllo se nell' oggetto sono presenti le proprietà forza o/e costituzione, se si genreo una nuova variabile con valore vitalita.
+        Salvo il numero di proprietà presenti nell' oggetto. */
+        let numeroProp = 0;
         for(prop in obj){
             numeroProp += 1;
             if((prop === 'forza' || prop === 'costituzione') || (prop === 'forza' && prop === 'costituzione')){
                 newProp = 'vitalita';
             }
         }
-console.log(newProp);
 
-
-            // inizio a ciclare l array dati per generare un nuovo array con i soli elementi interessati
-
-
-// ------------------------------------------------------------------------------------------------------------------------------------------
-    //         datiJson.forEach(element => {
-    
-        
-       
-
-    //         for(prop in obj){
-
-    //         if(Array.isArray(element[prop])){
-    //             element[prop].forEach(el => {
-    //                 if(el == obj[prop]){
-    //                     newArrayData.push(element);
-    //                 }
-    //             });
-    //         }else if(prop === 'forza' || prop === 'costituzione'){
-    //             if(Array.isArray(element[newProp]) && prop === 'forza'){
-    //                 for(let x = 0; x < element[newProp].length; x++){
-    //                     if(element[newProp][0] == obj[prop] && !newArrayData.includes(element)){
-    //                         newArrayData.push(element);
-    //                     }
-    //                 }
-    //             }else if(Array.isArray(element[newProp]) && prop === 'costituzione'){
-    //                 for(let x = 0; x < element[newProp].length; x++){
-    //                     if(element[newProp][1] == obj[prop] && !newArrayData.includes(element)){
-    //                         newArrayData.push(element);
-    //                     }
-    //                 }
-    //             }
-
-    //         }else{
-    //             if(element[prop] == obj[prop]){
-    //                 newArrayData.push(element);
-    //             }
-    //         }
-           
+        // inizio a ciclare l array dati 
+        datiJson.forEach(element => {
             
-            
-    //     }
+            // per ogni elemento aggiungo la proprietà count e la setto a 0
+            element.count = 0;
 
+            // ciclo l' oggetto delle proprietà per verificare quali elementi dell' array dati hanno quelle proprietà
+            for(prop in obj){
 
-        
-        
-    // });
-// ------------------------------------------------------------------------------------------------------------------------------------------
+                /*se la proprietà newProp è stata creata, la prop corrisponde a forza e il valore della prop è uguale al primo valore
+                dell' array vitalità dell' elemento, aumento il count dell' elemento di 1*/
+                if(newProp && prop === 'forza' && (element[newProp][0] == obj[prop])){
+                    element.count += 1;
 
-    datiJson.forEach(element => {
-    
-        element.count = 0;
-       
-// --------------------------------------------ULTIMA----------------------------------------------------------------------
-        // for(prop in obj){
+                // faccio la stessa cosa per la costituzione
+                }else if(newProp && prop === 'costituzione' && (element[newProp][1] == obj[prop])){
+                    element.count += 1;
 
-        //     if(Array.isArray(element[prop])){
-        //         element[prop].forEach(el => {
-        //             if(el == obj[prop]){
-        //                 // newArrayData.push(element);
-        //                 element.count += 1;
-        //             }
-        //         });
-        //     }else if(prop === 'forza' || prop === 'costituzione'){
-        //         if(Array.isArray(element[newProp]) && prop === 'forza'){
-        //             for(let x = 0; x < element[newProp].length; x++){
-        //                 if(element[newProp][0] == obj[prop] && !newArrayData.includes(element)){
-        //                     // newArrayData.push(element);
-        //                     element.count += 1;
-        //                 }
-        //             }
-        //         }else if(Array.isArray(element[newProp]) && prop === 'costituzione'){
-        //             for(let x = 0; x < element[newProp].length; x++){
-        //                 if(element[newProp][1] == obj[prop] && !newArrayData.includes(element)){
-        //                     // newArrayData.push(element);
-        //                     element.count += 1;
-        //                 }
-        //             }
-        //         }
-
-        //     }else{
-        //         if(element[prop] == obj[prop]){
-        //             // newArrayData.push(element);
-        //             element.count += 1;
-        //         }
-        //     }
-        
-        
-        
-        // }
-// ----------------------------------------------------------------------------------------------------------------------------------
-
-for(prop in obj){
-
-    if(newProp && prop === 'forza' && (element[newProp][0] == obj[prop])){
-        // if(prop === 'forza' && (element[newProp][0] == obj[prop])){
-            // console.log('ciao');
-            element.count += 1;
-            // element[newProp].forEach((el, i) => {
-            //     if(i == 0 && el == obj[prop]){
-            //         console.log(el);
-            //         element.count += 1;
-            //     }
-                
-            // });
-                    // for(let x = 0; x < element[newProp].length; x++){
-                    //     console.log(element[newProp][0])
-                    //     if(element[newProp][0] == obj[prop]){
-                    //         // newArrayData.push(element);
-                    //         element.count += 1;
-                    //         // element.count -= 1;
-                    //     }
-                    // }
-                    
-        // }else if(prop === 'costituzione' && element[newProp]){
-
-        //     for(let x = 0; x < element[newProp].length; x++){
-
-        //         if(element[newProp][1] == obj[prop]){
-        //             // newArrayData.push(element);
-        //             element.count += 1;
-        //         }
-        //     }
-                
-        // }
-
-
-
-    }else if(newProp && prop === 'costituzione' && (element[newProp][1] == obj[prop])){
-
-
-        element.count += 1;
-
-
-
-
-    }else if(Array.isArray(element[prop])){
-                element[prop].forEach(el => {
-                    if(el == obj[prop]){
-                        // newArrayData.push(element);
+                /*in tutti gli altri casi, ossia quando nelle prop non è presente ne forza ne costituzione, controllo che il valore 
+                della prop sia uguale al valore dell' elemento con quella prop, se si aumento il count */
+                }else{
+                    if(element[prop] == obj[prop]){
                         element.count += 1;
                     }
-                });
-    }else{
-                if(element[prop] == obj[prop]){
-                    // newArrayData.push(element);
-                    element.count += 1;
                 }
             }
+        });
+
+        // riciclo l' array dati per verificare quali elementi hanno il count uguale al numero delle proprietà dell' oggetto obj e 
+        // li pusho in un nuovo array
+        datiJson.forEach(element => {
+            if(element.count == numeroProp){
+                newArrayData.push(element);
+            }
+        });
         
-        
-        
-        }
-
-
-
-
-
-
-
-        // console.log(element.count);
-        // console.log(element);
-        
-        
-    });
-// ------------------------------------------------------------------------------------------------------
-    // datiJson.forEach(element => {
-    //     if(element.count === numeroProp){
-    //         newArrayData.push(element);
-    //     }
-    // });
-// ------------------------------------------------------------------------------------------------------------
-    
-    datiJson.forEach(element => {
-        console.log(element.count);
-        console.log(`numero = ${numeroProp}`);
-        if(element.count == numeroProp){
-            newArrayData.push(element);
-        }
-    });
-      
-
-    
-    createCards(newArrayData);
+        // genero le carte in base agli elementi selezionati che rispettano i criteri di ricerca
+        createCards(newArrayData);
     }
-
-     
-    
-
-
-
-    });
+});
         
 
 
-// da newArrayData eseguo un ulteriore controllo
