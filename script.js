@@ -20,7 +20,7 @@ let card1 = new Card('https://media.wizards.com/2021/mid/it_j6JJKW29cU.png',
                         3,
                         [TYPE[0]],
                         [COLOR[1]],
-                        'la forza di adeline catara splendente è pari al numero di creature che controlli',
+                        'la forza di adeline catara splendente è pari al numero di creature che controlli cautela',
                         ['n', 4]
                         );
 let card2 = new Card('https://media.wizards.com/2021/mid/it_xNb9MZTHAf.png',
@@ -218,8 +218,12 @@ let containerCard = document.getElementById("container-card");
 function createCards(json){
     json.forEach(element => {
         let img = document.createElement("IMG");
+        let div = document.createElement("DIV");
         img.setAttribute("src", element.image);
-        containerCard.appendChild(img);
+        img.setAttribute("class", "immagine");
+        div.setAttribute("class", "image1");
+        div.appendChild(img);
+        containerCard.appendChild(div);
     });
 }
 
@@ -412,6 +416,30 @@ inputKeyWord.addEventListener("keypress", (e) => {
         createCards(newArray);
     }
 })
-        
 
+// EVENTO HOVER SULLE CARTE
+if(window.innerWidth >= 635){
+    containerCard.addEventListener("mouseover", (e) => {
+    
+        if(e.target.tagName === "IMG"){
+
+            let div = e.target.parentElement;
+            let img = document.createElement("IMG");
+            img.setAttribute("class", "image2");
+            img.setAttribute("src", e.target.src);
+            div.appendChild(img);
+
+            e.target.addEventListener("mouseleave", () => {
+                let immaginiHover = document.getElementsByClassName('image2');
+                let immagini = Array.from(immaginiHover);
+
+                immagini.forEach(element => {
+                    element.remove();
+                });
+            })
+        }
+    })
+}
+
+        
 

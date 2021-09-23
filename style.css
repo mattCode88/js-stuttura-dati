@@ -10,12 +10,21 @@
     width: max-content;
     cursor: pointer;
     margin-top: 20px;
+    transition: 1s;
 }
 .hide{
     display: none;
 }
 .flex{
     display: flex;
+}
+h1{
+    font-size: 40px;
+}
+.btn:hover{
+    background-color: lightgray;
+    color: #000;
+    font-weight: bold;
 }
 .container{
     width: 100%;
@@ -30,31 +39,87 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;    
-    /* cursor: pointer; */
     padding-top: 40px;
 }
 .main{
     width: 100%;
-    padding: 50px 100px;
+    padding: 50px 100px 200px 100px;
 }
 .main > #container-card{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
-.main > #container-card > img{
-    width: calc((100% - 60px) / 5);
+.main > #container-card > .image1{
+    width: calc((100% - 60px) / 6);
     margin: 5px 5px;
     cursor: pointer;
+    position: relative;
+}
+.main > #container-card > .image1 > .immagine{
+    width: 100%;
+}
+.image2{
+    width: 320px;
+    position: absolute;
+    left: 10px;
+    top: 100px;
+    z-index: 10;
 }
 .main > #ricerca{
     padding: 0 100px;
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
     padding-bottom: 50px;
-    /* display: none; */
 }
 .main > #ricerca > div:first-of-type{
     margin-bottom: 20px;
+}
+
+@media screen and (max-width: 634px){
+    .main > #container-card > .image1{
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media screen and (min-width: 635px) and (max-width: 767px){
+    .main > #container-card > .image1{
+        width: calc((100% - 20px) / 2);
+        margin: 5px 5px;
+    }
+    .image2{
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .main > #container-card > .image1{
+        width: calc((100% - 30px) / 3);
+        margin: 5px 5px;
+    }
+    .image2{
+        width: 260px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .main > #container-card > .image1{
+        width: calc((100% - 40px) / 4);
+        margin: 5px 5px;
+    }
+    .image2{
+        width: 280px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px){
+
+    .main > #container-card > .image1{
+        width: calc((100% - 50px) / 5);
+        margin: 5px 5px;
+    }
+    .image2{
+        width: 290px;
+    }
 }
