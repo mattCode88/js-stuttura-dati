@@ -10,9 +10,66 @@
 <body>
     <div class="container">
 
+        <header>
+            <h1>MTG Magic The Gathering</h1>
+            <div id="cerca" class="btn">RICERCA AVANZATA</div>
+        </header>
 
+        <main class="main">
+
+            <div id="ricerca" class="hide">
+
+                <div>
+                    <label for="type">TIPO</label>
+                    <select name="type" id="type" class="selected">
+                        <option value="All">ALL</option>
+                    </select>
+                    
+                    <label for="color">COLORE</label>
+                    <select name="color" id="color" class="selected">
+                        <option value="All">ALL</option>
+                    </select>
+                    
+                    <label for="mana">MANA</label>
+                    <select name="mana" id="mana" class="selected">
+                        <option value="All">ALL</option>
+                    </select>
+                    
+                    <label for="forza">FORZA</label>
+                    <select name="forza" id="forza" class="selected">
+                        <option value="All">ALL</option>
+                    </select>
+                    
+                    <label for="costituzione">COSTITUZIONE</label>
+                    <select name="costituzione" id="costituzione" class="selected">
+                        <option value="All">ALL</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="name">NOME</label>
+                    <input type="text" id="name" placeholder="Inserisci Nome">
+                    
+                    <label for="key-word">PAROLA CHIAVE</label>
+                    <input type="text" id="key-word" placeholder="Inserisci Parola Chiave">
+                </div>
+
+                <div id="cerca-carte" class="btn">CERCA</div>
+
+            </div>
+
+            <div id="container-card">
+             
+            </div>
+
+            
+
+        </main>
 
         
+
+
+
     </div>
 
     <script src="script.js"></script>

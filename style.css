@@ -3,8 +3,58 @@
     padding: 0;
     margin: 0;
 }
+.btn{
+    padding: 8px 15px;
+    background-color: #382c2c;
+    border-radius: 5px;
+    width: max-content;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.hide{
+    display: none;
+}
+.flex{
+    display: flex;
+}
 .container{
     width: 100%;
-    height: 100vh;
-    background-color: lightgreen;
+    height: 100%;
+    min-height: 100vh;
+    background-image: url('./img1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    /* cursor: pointer; */
+    padding-top: 40px;
+}
+.main{
+    width: 100%;
+    padding: 50px 100px;
+}
+.main > #container-card{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.main > #container-card > img{
+    width: calc((100% - 60px) / 5);
+    margin: 5px 5px;
+    cursor: pointer;
+}
+.main > #ricerca{
+    padding: 0 100px;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+    /* display: none; */
+}
+.main > #ricerca > div:first-of-type{
+    margin-bottom: 20px;
 }
